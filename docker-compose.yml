@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+    db:
+        restart: unless-stopped
+        image: postgres:12-alpine
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_PASSWORD: yoplay
+            POSTGRES_USER: yoplay
+            POSTGRES_DB: yoplay
+        volumes:
+            - yo-data:/var/lib/postgresql/data
+            - ./var:/var/www/var
+
+volumes:
+    yo-data:
+        driver: local

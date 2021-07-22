@@ -1,0 +1,2 @@
+App\Domain\Game\Entity\Game:
+    shortName: game
