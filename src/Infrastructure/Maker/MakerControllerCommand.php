@@ -20,7 +20,7 @@ class MakerControllerCommand extends AbstractMakerCommand
         $this
             ->setDescription('Creat Controller based on Yo CMD')
             ->addArgument(static::CONTROLLER, InputArgument::OPTIONAL, 'Controller name')
-            ->addOption(static::API_OPTION, null, InputOption::VALUE_NONE, "Controller for API");
+            ->addOption(static::API_OPTION, null, InputOption::VALUE_NONE, 'Controller for API');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -29,7 +29,7 @@ class MakerControllerCommand extends AbstractMakerCommand
         $controllerPath = $input->getArgument(static::CONTROLLER);
 
         if (!is_string($controllerPath)) {
-            throw new \RuntimeException('ControllerPath should be a string !');
+            throw new \InvalidArgumentException('ControllerPath should be a string !');
         }
 
         if (static::CONTROLLER !== substr($controllerPath, -1 * strlen(static::CONTROLLER))) {
@@ -41,7 +41,7 @@ class MakerControllerCommand extends AbstractMakerCommand
             $namespace = '';
             $className = $parts[0];
         } else {
-            $namespace = '\\' . implode('\\', array_slice($parts, 0, -1));
+            $namespace = '\\'.implode('\\', array_slice($parts, 0, -1));
             $className = $parts[$partCount - 1];
         }
 
@@ -64,5 +64,4 @@ class MakerControllerCommand extends AbstractMakerCommand
 
         return Command::SUCCESS;
     }
-
 }
