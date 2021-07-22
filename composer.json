@@ -65,6 +65,7 @@
             "@auto-scripts"
         ],
         "post-update-cmd": [
+            "./bin/console doctrine:schema:update --force",
             "@auto-scripts"
         ]
     },
