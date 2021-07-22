@@ -3,6 +3,10 @@
 namespace App\Infrastructure\Maker;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Question\Question;
+use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
 use Twig\Environment;
 
 abstract class AbstractMakerCommand extends Command
@@ -34,4 +38,23 @@ abstract class AbstractMakerCommand extends Command
         }
         @file_put_contents($filename, $content);
     }
+
+    protected function askDomain(SymfonyStyle $io): string
+    {
+        // construct list of domain using autocompletion.
+        $domains = [];
+        $files = (new Finder())->in("{$this->projectDir}/src/Domain")->depth(0)->directories();
+
+        /** @var SplFileInfo $file */
+        foreach ($files as $file) {
+            $domains[] = $file->getBasename();
+        }
+
+        // Ask question to the USER
+        $q = new Question('Select a domaine');
+        $q->setAutocompleterValues($domains);
+
+        return $io->askQuestion($q);
+    }
+
 }
