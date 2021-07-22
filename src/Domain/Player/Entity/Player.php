@@ -2,10 +2,12 @@
 
 namespace App\Domain\Player\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Domain\Player\Repository\PlayerRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PlayerRepository::class)]
+#[ApiResource()]
 class Player
 {
     #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: 'integer')]
