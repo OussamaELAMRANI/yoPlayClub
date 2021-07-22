@@ -11,9 +11,7 @@ class AppController extends AbstractController
     #[Route('/app', name: 'app')]
     public function index(): Response
     {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/AppController.php',
-        ]);
+        dump($this->container);
+        return $this->render('base.html.twig');
     }
 }

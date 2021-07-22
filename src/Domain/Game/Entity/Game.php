@@ -15,16 +15,13 @@ class Game
     private string $name;
 
     #[ORM\Column(name: 'logo', type: 'string', nullable: true)]
-    private string $logoPath;
+    private ?string $logoPath;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
@@ -32,7 +29,6 @@ class Game
 
     /**
      * @param string $name
-     *
      * @return Game
      */
     public function setName(string $name): self
@@ -43,18 +39,18 @@ class Game
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLogoPath(): string
+    public function getLogoPath(): ?string
     {
         return $this->logoPath;
     }
 
     /**
-     * @param string $logoPath
+     * @param string|null $logoPath
      * @return Game
      */
-    public function setLogoPath(string $logoPath): self
+    public function setLogoPath(?string $logoPath): self
     {
         $this->logoPath = $logoPath;
 
