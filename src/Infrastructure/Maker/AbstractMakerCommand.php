@@ -8,7 +8,7 @@ use Twig\Environment;
 abstract class AbstractMakerCommand extends Command
 {
     public function __construct(
-        string|null $name,
+        string|null $name = null,
         protected Environment $twig,
         protected string $projectDir
     )
