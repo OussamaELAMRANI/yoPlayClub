@@ -8,14 +8,22 @@ use Twig\Environment;
 abstract class AbstractMakerCommand extends Command
 {
     public function __construct(
-        string|null $name = null,
+        string | null $name = null,
         protected Environment $twig,
         protected string $projectDir
-    )
-    {
+    ) {
         parent::__construct($name);
     }
 
+    /**
+     * Create File content on subdirectory based on Twig.
+     *
+     * @param array<string, mixed> $params
+     *
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     protected function createFile(string $template, array $params, string $output): void
     {
         $content = $this->twig->render("@maker/{$template}.twig", $params);
