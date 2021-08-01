@@ -1,4 +1,8 @@
 doctrine:
     dbal:
+        driver: pdo_sqlite
+        charset: UTF8
+        path: "%kernel.cache_dir%/test.db"
+        url: null
         # "TEST_TOKEN" is typically set by ParaTest
         dbname_suffix: '_test%env(default::TEST_TOKEN)%'

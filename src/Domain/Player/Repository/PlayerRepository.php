@@ -11,6 +11,8 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Player|null findOneBy(array $criteria, array $orderBy = null)
  * @method Player[]    findAll()
  * @method Player[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ *
+ * @extends \Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository<Player>
  */
 class PlayerRepository extends ServiceEntityRepository
 {
@@ -18,5 +20,4 @@ class PlayerRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Player::class);
     }
-
 }
