@@ -11,6 +11,7 @@ use Faker\Generator;
 use Liip\TestFixturesBundle\Services\DatabaseToolCollection;
 use Liip\TestFixturesBundle\Services\DatabaseTools\AbstractDatabaseTool;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class GameTest extends KernelTestCase
@@ -45,7 +46,14 @@ class GameTest extends KernelTestCase
         /** @var ValidatorInterface validator */
         $validator = self::getContainer()->get(ValidatorInterface::class);
         $errors = $validator->validate($game);
-        $this->assertCount($errorsCount, $errors);
+
+        $messages = [];
+        /** @var ConstraintViolation $error */
+        foreach ($errors as $error) {
+            $messages[] = $error->getPropertyPath().' => '.$error->getMessage();
+        }
+
+        $this->assertCount($errorsCount, $errors, implode('', $messages));
     }
 
     public function getEntity(): Game
