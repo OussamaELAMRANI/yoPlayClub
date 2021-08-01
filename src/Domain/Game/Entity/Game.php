@@ -4,8 +4,10 @@ namespace App\Domain\Game\Entity;
 
 use App\Domain\Game\Repository\GameRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: GameRepository::class)]
+#[ORM\Entity(repositoryClass: GameRepository::class), UniqueEntity('name')]
 class Game
 {
     #[ORM\Id, ORM\GeneratedValue, ORM\Column(type: 'integer')]
@@ -15,6 +17,7 @@ class Game
     private string $name;
 
     #[ORM\Column(name: 'logo', type: 'string', nullable: true)]
+    #[Assert\Url]
     private ?string $logoPath;
 
     public function getId(): ?int
@@ -28,7 +31,6 @@ class Game
     }
 
     /**
-     * @param string $name
      * @return Game
      */
     public function setName(string $name): self
@@ -38,16 +40,12 @@ class Game
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getLogoPath(): ?string
     {
         return $this->logoPath;
     }
 
     /**
-     * @param string|null $logoPath
      * @return Game
      */
     public function setLogoPath(?string $logoPath): self

@@ -56,5 +56,4 @@ abstract class AbstractMakerCommand extends Command
 
         return $io->askQuestion($q);
     }
-
 }
