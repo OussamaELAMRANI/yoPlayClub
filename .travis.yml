@@ -1,0 +1,29 @@
+os: linux
+dist: bionic
+language: php
+php:
+    - 8.0.0
+before_install:
+    # set up PHP config
+    - phpenv config-rm xdebug.ini || true # code coverage is generated with PCOV
+install:
+    # ensure that the Composer config is valid
+    - composer validate
+
+    # install Composer packages, will also trigger dump-autoload
+    - composer require -n --ignore-platform-reqs "phwoolcon/ci-pecl-cacher" "phpunit/phpunit:^9" "php-coveralls/php-coveralls"
+    - composer install -n --ignore-platform-reqs --no-suggest
+
+script:
+    - ./vendor/bin/phpunit --coverage-clover coverage.xml
+
+after_success:
+    - travis_retry ./vendor/bin/php-coveralls -v
+    - bash <(curl -s https://codecov.io/bash) -f coverage.xml
+cache:
+    directories:
+        - vendor
+        - ~/.composer/cache
+        - ~/pecl_cache
+jobs:
+    fast_finish: true
