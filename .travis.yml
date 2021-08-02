@@ -19,7 +19,7 @@ script:
 
 after_success:
     - travis_retry ./vendor/bin/php-coveralls -v
-    - bash <(curl -s https://codecov.io/bash)
+    - bash <(curl -s https://codecov.io/bash) -f coverage.xml
 cache:
     directories:
         - vendor
