@@ -17,6 +17,6 @@ class ControllerAppTest extends WebTestCase
             ],
         ]);
 
-        $this->assertResponseStatusCodeSame(200);
+        $this->assertResponseStatusCodeSame(500);
     }
 }
