@@ -3,6 +3,9 @@ dist: bionic
 language: php
 php:
     - 8.0.0
+env:
+    global:
+        - XDEBUG_MODE=coverage
 before_install:
     # set up PHP config
     - phpenv config-rm xdebug.ini || true # code coverage is generated with PCOV
