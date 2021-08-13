@@ -1,19 +1,61 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+    {% block stylesheets %}
+        {# {{ encore_entry_link_tags('app') }} #}
+    {% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% block javascripts %}
+        {# {{ encore_entry_script_tags('app') }} #}
+    {% endblock %}
+</head>
+<body>
+{% block body %}{% endblock %}
+<form method="post" action="{{ path('ping') }}">
+    <button type="submit">Ping now</button>
+</form>
+<script>
+    function notifyMe(message) {
+        // Let's check if the browser supports notifications
+        if (!("Notification" in window)) {
+            alert(message);
+        }
+
+        // Let's check whether notification permissions have already been granted
+        else if (Notification.permission === "granted") {
+            // If it's okay let's create a notification
+            let notification = new Notification(message);
+        }
+
+        // Otherwise, we need to ask the user for permission
+        else if (Notification.permission !== "denied") {
+            Notification.requestPermission().then(function (permission) {
+                // If the user accepts, let's create a notification
+                if (permission === "granted") {
+                    let notification = new Notification(message);
+                }
+            });
+        }
+
+        // At last, if the user has denied notifications, and you
+        // want to be respectful there is no need to bother them any more.
+    }
+
+    const url = new URL('https://localhost/.well-known/mercure');
+    url.searchParams.append('topic', 'https://example.com/ping');
+    // The URL class is a convenient way to generate URLs such as https://localhost/.well-known/mercure?topic=https://example.com/books/{id}&topic=https://example.com/users/dunglas
+
+    const eventSource = new EventSource(url);
+
+    // The callback will be called every time an update is published
+    eventSource.onmessage = e => {
+        console.log(e);
+        notifyMe(e.data)
+    } // do something with the payload
+</script>
+</body>
 </html>

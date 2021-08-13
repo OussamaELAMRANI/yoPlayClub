@@ -25,6 +25,9 @@
     "composer/xdebug-handler": {
         "version": "2.0.1"
     },
+    "dbrekelmans/bdi": {
+        "version": "0.3"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -144,6 +147,12 @@
     "laminas/laminas-code": {
         "version": "4.4.2"
     },
+    "lcobucci/clock": {
+        "version": "2.0.0"
+    },
+    "lcobucci/jwt": {
+        "version": "4.1.4"
+    },
     "liip/test-fixtures-bundle": {
         "version": "2.0.0-beta4"
     },
@@ -176,6 +185,9 @@
     },
     "php-cs-fixer/diff": {
         "version": "v2.0.2"
+    },
+    "php-webdriver/webdriver": {
+        "version": "1.11.1"
     },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
@@ -302,6 +314,9 @@
             "phpcs.xml.dist"
         ]
     },
+    "symfony/amqp-messenger": {
+        "version": "v5.3.4"
+    },
     "symfony/asset": {
         "version": "v5.3.2"
     },
@@ -355,6 +370,9 @@
     },
     "symfony/doctrine-bridge": {
         "version": "v5.3.3"
+    },
+    "symfony/doctrine-messenger": {
+        "version": "v5.3.4"
     },
     "symfony/dom-crawler": {
         "version": "v5.3.4"
@@ -411,6 +429,9 @@
             "src/Kernel.php"
         ]
     },
+    "symfony/http-client": {
+        "version": "v5.3.4"
+    },
     "symfony/http-client-contracts": {
         "version": "v2.4.0"
     },
@@ -428,6 +449,33 @@
             "version": "1.0",
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
+    },
+    "symfony/mercure": {
+        "version": "v0.5.3"
+    },
+    "symfony/mercure-bundle": {
+        "version": "0.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "0.3",
+            "ref": "d1cdff3ae53bf6a5cbfb088c82f26032bdc14cc3"
+        },
+        "files": [
+            "config/packages/mercure.yaml"
+        ]
+    },
+    "symfony/messenger": {
+        "version": "4.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.3",
+            "ref": "e9a414b113ceadbf4e52abe37bf8f1b443f06ccb"
+        },
+        "files": [
+            "config/packages/messenger.yaml"
+        ]
     },
     "symfony/monolog-bridge": {
         "version": "v5.3.3"
@@ -452,6 +500,15 @@
     },
     "symfony/orm-pack": {
         "version": "v2.1.0"
+    },
+    "symfony/panther": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "93d9baa582d0a755cc9ef81bc38a921d5fa16973"
+        }
     },
     "symfony/password-hasher": {
         "version": "v5.3.3"
@@ -503,6 +560,9 @@
     },
     "symfony/proxy-manager-bridge": {
         "version": "v5.3.0"
+    },
+    "symfony/redis-messenger": {
+        "version": "v5.3.4"
     },
     "symfony/routing": {
         "version": "5.3",

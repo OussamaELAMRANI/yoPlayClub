@@ -29,3 +29,7 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+
+#TEMP
+/tmp/
