@@ -10,7 +10,9 @@
     }
 }
 
-{$SERVER_NAME:localhost}
+#{$SERVER_NAME:localhost}
+# The address of your server
+:3000
 
 log
 

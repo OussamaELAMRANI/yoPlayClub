@@ -12,7 +12,7 @@
 
 #{$SERVER_NAME:localhost}
 # The address of your server
-localhost:3000
+:3000
 
 log
 
